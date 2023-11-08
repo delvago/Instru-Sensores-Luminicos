@@ -2,14 +2,14 @@
 /****************************************
 * Librerias
 ****************************************/
-#include "Ubidots.h"
+#include "Ubidots.h"//Link de la librería externa https://github.com/ubidots/ubidots-esp32
 
 /****************************************
 * Constantes
 ****************************************/ 
-const char* UBIDOTS_TOKEN = "BBFF-8fA1DnSVpwdiNCJ5GbEppJsl0EZkrE";  // Put here your Ubidots TOKEN
-const char* WIFI_SSID = "Margomez";      // Put here your Wi-Fi SSID
-const char* WIFI_PASS = "3108201204";      // Put here your Wi-Fi password 
+const char* UBIDOTS_TOKEN = "BBFF-8fA1DnSVpwdiNCJ5GbEppJsl0EZkrE";  // Ubidots TOKEN
+const char* WIFI_SSID = "Margomez";      // Wi-Fi SSID
+const char* WIFI_PASS = "3108201204";      // Wi-Fi password 
 Ubidots ubidots(UBIDOTS_TOKEN, UBI_HTTP);
 
 String lectura_radiacion_solar(){
@@ -79,16 +79,16 @@ void loop() {
   double value1 = random(0, 9) * 10;
   double value2 = random(0, 9) * 100;
   double value3 = random(0, 9) * 1000;
-  ubidots.add("Variable_Name_One", value1);  // Change for your variable name
+  ubidots.add("Variable_Name_One", value1);
   ubidots.add("Variable_Name_Two", value2);
   ubidots.add("Variable_Name_Three", value3);
 
   bool bufferSent = false;
-  bufferSent = ubidots.send();  // Will send data to a device label that matches the device Id
+  bufferSent = ubidots.send();
 
-  if (bufferSent) {
-    // Do something if values were sent properly
-    Serial.println("Values sent by the device");
+  if (bufferSent) {  
+    Serial.println("Valores enviados a Ubidots");
+    Serial.println("Valor obtenido del sensor");
   }
 
   delay(5000);
